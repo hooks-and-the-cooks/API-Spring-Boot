@@ -7,26 +7,26 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
-@Component
-public class webDao {
-    static List<webModel> web = new ArrayList<>();
-    static{
-        web.add(new webModel(1, "Anshuman","anshumandixit7@gmail.com"));
-        web.add(new webModel(2, "Anshuman","anshumandixit7@gmail.com"));
-        web.add(new webModel(3, "Anshuman","anshumandixit7@gmail.com"));
-        web.add(new webModel(4, "Anshuman","anshumandixit7@gmail.com"));
-        web.add(new webModel(5, "Anshuman","anshumandixit7@gmail.com"));
-        web.add(new webModel(6, "Anshuman","anshumandixit7@gmail.com"));
-    }
 
-    public List<webModel> findall(){
-        return web;
-    }
-    public webModel findSpecific(int id){
-        for(webModel webd : web){
-            if(webd.getId() == id)
-                return webd;
-        }
-        return null;
-    }
+public class webDao {
+  //    static List<webModel> web = new ArrayList<>();
+//    static{
+//        web.add(new webModel(1, "Anshuman","anshumandixit7@gmail.com"));
+//        web.add(new webModel(2, "Anshuman","anshumandixit7@gmail.com"));
+//        web.add(new webModel(3, "Anshuman","anshumandixit7@gmail.com"));
+//        web.add(new webModel(4, "Anshuman","anshumandixit7@gmail.com"));
+//        web.add(new webModel(5, "Anshuman","anshumandixit7@gmail.com"));
+//        web.add(new webModel(6, "Anshuman","anshumandixit7@gmail.com"));
+//    }
+
+//    public List<webModel> findall(){
+//        return web;
+//    }
+//    public webModel findSpecific(int id){
+//        for(webModel webd : web){
+//            if(webd.getId() == id)
+//                return webd;
+//        }
+//        return null;
+//    }
 }
