@@ -1,58 +1,37 @@
 package com.example.webapp.Services;
 
+import com.example.webapp.Dao.webDao;
 import com.example.webapp.Model.webModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 @Component
 public class ControllerServiceImplent implements ControllerService{
-    List<webModel> web;
-    public ControllerServiceImplent(){
-        web = new ArrayList<>();
-        web.add(new webModel(1, "Anshuman","anshumandixit7@gmail.com"));
-        web.add(new webModel(2, "Satyam", "satyamguptagkp@gmail.com"));
-        web.add(new webModel(3, "nimit", "nimitshreshtha09@gmail.com"));
-    }
+    @Autowired
+    public webDao WebDao;
     @Override
     public List<webModel> getAllValue(){
-        return web;
+        return this.WebDao.fetchAll();
     }
     @Override
     public webModel getIdValue(int id){
-        for(webModel W : web){
-            if(W.getId() == id)
-                return W;
-        }
-        return null;
+        return this.WebDao.fetchFromDatabaseOnId(id);
     }
     @Override
     public webModel addNewModel(webModel WebModel){
-        web.add(WebModel);
-        return WebModel;
+        this.WebDao.addToDatabase(WebModel);
+        return this.WebDao.fetchFromDatabaseOnId(WebModel.getId());
     }
     @Override
-    public webModel updateExistModel(webModel WebModel){
-        for (webModel W: web){
-            if(W.getId() == WebModel.getId()){
-                W.setName(WebModel.getName());
-                W.setEmail(WebModel.getEmail());
-                return WebModel;
-            }
-        }
-        return null;
+    public String updateExistModel(webModel WebModel){
+        this.WebDao.updateExistingInDatabase(WebModel);
+        return "Updated Successfully";
     }
 
     @Override
-    public boolean deleteExistModel(int id) {
-        for (webModel W : web){
-            if(W.getId() == id){
-                web.remove(W);
-                return true;
-            }
-        }
-        return false;
+    public String deleteExistModel(int id) {
+        this.WebDao.deleteFromDatabase(id);
+        return "Deletion was Successful!";
     }
 }
